@@ -1,0 +1,10 @@
+current location
+Переулок Солко2
+
+time
+1436
+
+state
+none
+
+END
