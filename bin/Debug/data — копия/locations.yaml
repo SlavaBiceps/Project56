@@ -1,3 +1,71 @@
+- fullName: Цветочная Аллея1
+  name: Цветочная Аллея
+  info: Test
+  locationsOut:
+  - buttonText: Цветочная Аллея, на юго-восток
+    condition: 
+    variablesChange:
+    - <time> = <time> + 1
+    - <location type> = street
+    - <current location> = Цветочная Аллея2
+- fullName: Цветочная Аллея2
+  name: Цветочная Аллея
+  info: Test
+  locationsOut:
+  - buttonText: Цветочная Аллея, на северо-запад
+    condition: 
+    variablesChange:
+    - <time> = <time> + 1
+    - <location type> = street
+    - <current location> = Цветочная Аллея1
+  - buttonText: Цветочная Аллея, на юго-восток
+    condition: 
+    variablesChange:
+    - <time> = <time> + 1
+    - <location type> = street
+    - <current location> = Цветочная Аллея3
+- fullName: Цветочная Аллея3
+  name: Цветочная Аллея
+  info: Test
+  locationsOut:
+  - buttonText: Цветочная Аллея, на северо-запад
+    condition: 
+    variablesChange:
+    - <time> = <time> + 1
+    - <location type> = street
+    - <current location> = Цветочная Аллея2
+  - buttonText: Цветочная Аллея, на юго-восток
+    condition: 
+    variablesChange:
+    - <time> = <time> + 1
+    - <location type> = street
+    - <current location> = Цветочная Аллея4
+- fullName: Цветочная Аллея4
+  name: Цветочная Аллея
+  info: Test
+  locationsOut:
+  - buttonText: Цветочная Аллея, на северо-запад
+    condition: 
+    variablesChange:
+    - <time> = <time> + 1
+    - <location type> = street
+    - <current location> = Цветочная Аллея3
+  - buttonText: Цветочная Аллея, на юго-восток
+    condition: 
+    variablesChange:
+    - <time> = <time> + 1
+    - <location type> = street
+    - <current location> = Цветочная Аллея5
+- fullName: Цветочная Аллея5
+  name: Цветочная Аллея
+  info: Test
+  locationsOut:
+  - buttonText: Цветочная Аллея, на северо-запад
+    condition: 
+    variablesChange:
+    - <time> = <time> + 1
+    - <location type> = street
+    - <current location> = Цветочная Аллея4
 - fullName: Улица Рыбная1
   name: Улица Рыбная
   info: Test
@@ -108,12 +176,6 @@
     - <time> = <time> + 1
     - <location type> = street
     - <current location> = Улица Трех Кинжалов3
-  - buttonText: Порт
-    condition:
-    variablesChange:
-      - <time> = <time> + 2
-      - <location type> = street
-      - <current location> = Порт Рилана
 - fullName: Улица Морозная4
   name: Улица Морозная
   info: Test
@@ -166,12 +228,6 @@
     - <time> = <time> + 1
     - <location type> = street
     - <current location> = Улица Морозная2
-  - buttonText: Порт
-    condition:
-    variablesChange:
-      - <time> = <time> + 2
-      - <location type> = street
-      - <current location> = Порт Рилана
 - fullName: Улица Зларис4
   name: Улица Зларис
   info: Test
@@ -224,12 +280,6 @@
     - <time> = <time> + 1
     - <location type> = street
     - <current location> = Улица Зларис2
-  - buttonText: Порт
-    condition:
-    variablesChange:
-      - <time> = <time> + 2
-      - <location type> = street
-      - <current location> = Порт Рилана
 - fullName: Ветренная Аллея1
   name: Ветренная Аллея
   info: Test
@@ -240,12 +290,6 @@
     - <time> = <time> + 1
     - <location type> = street
     - <current location> = Ветренная Аллея2
-  - buttonText: Порт
-    condition:
-    variablesChange:
-      - <time> = <time> + 2
-      - <location type> = street
-      - <current location> = Порт Рилана
 - fullName: Ветренная Аллея2
   name: Ветренная Аллея
   info: Test
@@ -288,12 +332,6 @@
     - <time> = <time> + 1
     - <location type> = street
     - <current location> = Ветренная Аллея3
-  - buttonText: Рынок Рилана
-    condition:
-    variablesChange:
-      - <time> = <time> + 2
-      - <location type> = street
-      - <current location> = Рынок Рилана
 - fullName: Бульвар Новой Надежды1
   name: Бульвар Новой Надежды
   info: Test
@@ -346,12 +384,6 @@
     - <time> = <time> + 1
     - <location type> = street
     - <current location> = Бульвар Новой Надежды3
-  - buttonText: Цветочная Аллея
-    condition:
-    variablesChange:
-      - <time> = <time> + 1
-      - <location type> = street
-      - <current location> = Цветочная Аллея3
 - fullName: Цветочная Аллея1
   name: Цветочная Аллея
   info: Test
@@ -362,12 +394,6 @@
     - <time> = <time> + 1
     - <location type> = street
     - <current location> = Цветочная Аллея2
-  - buttonText: Порт
-    condition:
-    variablesChange:
-      - <time> = <time> + 2
-      - <location type> = street
-      - <current location> = Порт Рилана
 - fullName: Цветочная Аллея2
   name: Цветочная Аллея
   info: Test
@@ -400,12 +426,6 @@
     - <time> = <time> + 1
     - <location type> = street
     - <current location> = Цветочная Аллея4
-  - buttonText: Бульвар Новой Надежды
-    condition:
-    variablesChange:
-      - <time> = <time> + 1
-      - <location type> = street
-      - <current location> = Бульвар Новой Надежды4
 - fullName: Цветочная Аллея4
   name: Цветочная Аллея
   info: Test
@@ -416,12 +436,6 @@
     - <time> = <time> + 1
     - <location type> = street
     - <current location> = Цветочная Аллея3
-  - buttonText: Южная Эллада
-    condition:
-    variablesChange:
-      - <time> = <time> + 1
-      - <location type> = street
-      - <current location> = Южная Эллада1
 - fullName: Переулок Колсо1
   name: Переулок Колсо
   info: Test
@@ -432,12 +446,6 @@
     - <time> = <time> + 1
     - <location type> = street
     - <current location> = Переулок Колсо2
-  - buttonText: Рынок Рилана
-    condition:
-    variablesChange:
-      - <time> = <time> + 2
-      - <location type> = street
-      - <current location> = Рынок Рилана
 - fullName: Переулок Колсо2
   name: Переулок Колсо
   info: Test
@@ -464,12 +472,6 @@
     - <time> = <time> + 1
     - <location type> = street
     - <current location> = Переулок Колсо2
-  - buttonText: Базар
-    condition:
-    variablesChange:
-      - <time> = <time> + 2
-      - <location type> = street
-      - <current location> = Базар Рилана
 - fullName: Переулок Солко1
   name: Переулок Солко
   info: Test
@@ -480,12 +482,6 @@
     - <time> = <time> + 1
     - <location type> = street
     - <current location> = Переулок Солко2
-  - buttonText: Базар
-    condition:
-    variablesChange:
-    - <time> = <time> + 2
-    - <location type> = street
-    - <current location> = Базар Рилана
 - fullName: Переулок Солко2
   name: Переулок Солко
   info: Test
@@ -496,12 +492,6 @@
     - <time> = <time> + 1
     - <location type> = street
     - <current location> = Переулок Солко1
-  - buttonText: Южная Эллада
-    condition:
-    variablesChange:
-      - <time> = <time> + 1
-      - <location type> = street
-      - <current location> = Южная Эллада5
 - fullName: Южная Эллада10
   name: Южная Эллада
   info: Test
@@ -650,12 +640,6 @@
     - <time> = <time> + 1
     - <location type> = street
     - <current location> = Южная Эллада2
-  - buttonText: Цветочная Аллея
-    condition:
-    variablesChange:
-      - <time> = <time> + 1
-      - <location type> = street
-      - <current location> = Цветочная Аллея4
 - fullName: Торговая Площадь Рилана1
   name: Торговая Площадь
   info: Test
@@ -708,65 +692,16 @@
   name: Порт Рилана
   info: Test
   locationsOut:
-  - buttonText: Улица Трех Кинжалов, на запад
+  - buttonText: Торговая Площадь Рилана, юг
     condition: 
     variablesChange:
     - <time> = <time> + 2
     - <location type> = street
-    - <current location> = Улица Трех Кинжалов4
-  - buttonText: Улица Морозная, на северо-запад
+    - <current location> = Торговая Площадь Рилана2
+  - buttonText: Торговая Площадь Рилана, север
     condition: 
     variablesChange:
     - <time> = <time> + 2
     - <location type> = street
-    - <current location> = Улица Морозная1
-  - buttonText: Улица Зларис, на север
-    condition:
-    variablesChange:
-      - <time> = <time> + 2
-      - <location type> = street
-      - <current location> = Улица Зларис1
-  - buttonText: Цветочная Аллея, на юго-восток
-    condition:
-    variablesChange:
-      - <time> = <time> + 2
-      - <location type> = street
-      - <current location> = Цветочная Аллея1
-  - buttonText: Ветренная Аллея, на юго-восток
-    condition:
-    variablesChange:
-      - <time> = <time> + 2
-      - <location type> = street
-      - <current location> = Ветренная Аллея1
-- fullName: Рынок Рилана
-  name: Рынок Рилана
-  info: Test
-  locationsOut:
-    - buttonText: Ветренная Аллея
-      condition:
-      variablesChange:
-        - <time> = <time> + 2
-        - <location type> = street
-        - <current location> = Ветренная Аллея4
-    - buttonText: Переулок Колсо
-      condition:
-      variablesChange:
-        - <time> = <time> + 2
-        - <location type> = street
-        - <current location> = Переулок Колсо1
-- fullName: Базар Рилана
-  name: Базар Рилана
-  info: Test
-  locationsOut:
-    - buttonText: Переулок Колсо
-      condition:
-      variablesChange:
-        - <time> = <time> + 2
-        - <location type> = street
-        - <current location> = Переулок Колсо3
-    - buttonText: Переулок Солко
-      condition:
-      variablesChange:
-        - <time> = <time> + 2
-        - <location type> = street
-        - <current location> = Переулок Солко1
+    - <current location> = Торговая Площадь Рилана1
+

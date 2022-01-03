@@ -133,7 +133,7 @@ namespace Project56
          {
              location_now = new Locations.location_class();
              //----------------------------------------------------------------------------------------
-             location_now = Locations.get_location(variables["current_location"]);
+             location_now = Locations.get_location(variables["current location"]);
              info.Clear();
              info.AppendText(location_now.Name + "\n");
              info.AppendText(location_now.Info + "\n");
@@ -319,8 +319,8 @@ namespace Project56
                  {
                      continue;
                  }
- 
-                 if (symbol == '<')
+
+                 if (symbol == '<' && char.IsLetter(input[i+1]))
                  {
                      i++;
                      symbol = input[i];
@@ -330,15 +330,22 @@ namespace Project56
                          i++;
                          symbol = input[i];
                      }
-                     result += variables[variable];
+                     if(char.IsLetter(variables[variable][0]))
+                     {
+                         result += "\""+variables[variable]+"\"";
+                     }
+                     else
+                     {
+                         result += variables[variable];
+                     }
                      variable = "";
                      continue;
                  }
- 
+
                  result += symbol;
-                 
+                
              }
- 
+
              return result;
          }
          public void ReWrite(string input)
