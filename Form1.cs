@@ -9,9 +9,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.CodeAnalysis.CSharp.Scripting;
- 
- 
- namespace Project56
+using YamlDotNet.Serialization;
+using YamlDotNet.Serialization.NamingConventions;
+
+
+namespace Project56
  {
      public partial class Form1 : Form
      {
@@ -74,25 +76,13 @@ using Microsoft.CodeAnalysis.CSharp.Scripting;
  
          private void read_data_file()
          {
-             StreamReader file = new StreamReader("data/data.txt");
-             string data_string1 = file.ReadLine();
-             string data_string2 = file.ReadLine();
-             while (data_string1!=null)
-             {
-                 if (data_string1 == "time")
-                 {
-                     // [time] = hours*60 + minutes
-                     variables["time"] = Convert.ToString(Convert.ToInt32(data_string2) % 1440);
- 
-                     data_string1=file.ReadLine();
-                     data_string2=file.ReadLine();
-                     continue;
-                 }
-                 variables[data_string1] = data_string2;
-                 data_string1=file.ReadLine();
-                 data_string2=file.ReadLine();
-             }
- 
+             var deserializer = new YamlDotNet.Serialization.DeserializerBuilder()
+                 .WithNamingConvention(CamelCaseNamingConvention.Instance)
+                 .Build();
+            
+             variables = deserializer.Deserialize<Dictionary<string, string>>(File.ReadAllText("data/data.yaml"));
+
+             variables["time"] = Convert.ToString(Convert.ToInt32(variables["time"]) % 1440);
              variables["time hours"] = Convert.ToString(Convert.ToInt32(variables["time"]) / 60);
              variables["time minutes"] = Convert.ToString(Convert.ToInt32(variables["time"]) % 60);
              if (variables["time minutes"].Length == 1)
@@ -104,7 +94,6 @@ using Microsoft.CodeAnalysis.CSharp.Scripting;
              {
                  variables["time hours"] = "0" + variables["time hours"];
              }
-             file.Close();
          }
          
          private void add_stats()
@@ -131,12 +120,12 @@ using Microsoft.CodeAnalysis.CSharp.Scripting;
  
          private void save_to_data()
          {
-             StreamWriter data_file_writer = new StreamWriter("data/data.txt");
-             foreach (var variable in variables)
-             {
-                 data_file_writer.WriteLine(variable.Key);
-                 data_file_writer.WriteLine(variable.Value);
-             }
+             var serializer = new SerializerBuilder()
+                 .WithNamingConvention(CamelCaseNamingConvention.Instance)
+                 .Build();
+             var result = serializer.Serialize(variables);
+             StreamWriter data_file_writer = new StreamWriter("data/data.yaml");
+             data_file_writer.WriteLine(result);
              data_file_writer.Close();
          }
  
@@ -186,7 +175,6 @@ using Microsoft.CodeAnalysis.CSharp.Scripting;
              {
                  button_count++;
                  Button button = new Button();
-                 info.AppendText("added "+text+"\n");
                  button.Text = text;
                  button.Size = new Size(6 * size_width, 1 * size_height);
                  button.Location = new Point(5 * size_width, (11 + button_count) * size_height);
@@ -216,8 +204,6 @@ using Microsoft.CodeAnalysis.CSharp.Scripting;
          private void create_graphics()
          {
              location_image = new PictureBox();
-             
-             //
              
              if (File.Exists("data/images/locations/" + location_now.Name + ".png"))
              {

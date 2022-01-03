@@ -91,4 +91,3 @@ C:\Users\slava\RiderProjects\Project56\Project56\obj\Debug\Project56.csproj.Copy
 C:\Users\slava\RiderProjects\Project56\Project56\obj\Debug\Project56.Form1.resources
 C:\Users\slava\RiderProjects\Project56\Project56\bin\Debug\YamlDotNet.dll
 C:\Users\slava\RiderProjects\Project56\Project56\bin\Debug\YamlDotNet.xml
-C:\Users\slava\RiderProjects\Project56\Project56\obj\Debug\Project56.g.resources
