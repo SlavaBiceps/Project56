@@ -16,14 +16,16 @@ namespace Project56
         public static void check_events()
         {
             rand = new Random();
+            /*
             check_weather();
             Rilan_bridge_closed();
             open_inventory();
-
+            */
         }
 
         public static void check_weather()
         {
+            /*
             if (Form1.quests["weather"] == "Дождь" && Form1.location_now.types["open air"]==1)
             {
                 Form1.info.AppendText("Все небо заволокло тучами, и, кажется, в ближайшее время дождь не собирается заканчиваться." +
@@ -118,7 +120,7 @@ namespace Project56
                 Form1.buttons_to_create[Form1.buttons_to_create_count].text = "Не, хочу забаговаться";
                 Form1.buttons_to_create[Form1.buttons_to_create_count].condition_out = "Rilan_bridge_closed.Баг";
                 Form1.buttons_to_create[Form1.buttons_to_create_count].type = "quest";
-            }
+            }*/
         }
         
 

@@ -1,0 +1,7 @@
+weather
+Облачно
+Rilan_bridge_closed
+none
+inventory open
+closed
+END
