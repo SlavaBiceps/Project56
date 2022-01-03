@@ -143,34 +143,6 @@
       <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.3.3.2\analyzers\dotnet\cs\Microsoft.CodeAnalysis.Analyzers.dll" />
       <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.3.3.2\analyzers\dotnet\cs\Microsoft.CodeAnalysis.CSharp.Analyzers.dll" />
     </ItemGroup>
-    <ItemGroup>
-      <Content Include="Resources\data\data.txt" />
-      <Resource Include="Resources\data\images\locations\non-used.png" />
-      <Content Include="Resources\data\images\locations\non-used2.png" />
-      <Resource Include="Resources\data\images\locations\Sample.png" />
-      <Content Include="Resources\data\images\locations\Базар Рилана.png" />
-      <Content Include="Resources\data\images\locations\Ветренная Аллея.png" />
-      <Content Include="Resources\data\images\locations\Мост к Академии.png" />
-      <Content Include="Resources\data\images\locations\Переулок Колсо.png" />
-      <Content Include="Resources\data\images\locations\Переулок Солко.png" />
-      <Content Include="Resources\data\images\locations\Площадь Рилана.png" />
-      <Content Include="Resources\data\images\locations\Порт Рилана.png" />
-      <Content Include="Resources\data\images\locations\Рынок.png" />
-      <Content Include="Resources\data\images\locations\Таверна Пьяный Дракон.png" />
-      <Content Include="Resources\data\images\locations\Темный переулок.png" />
-      <Content Include="Resources\data\images\locations\Торговая площадь Рилана, север.png" />
-      <Content Include="Resources\data\images\locations\Торговая площадь Рилана, юг.png" />
-      <Content Include="Resources\data\images\locations\Улица Зларис.png" />
-      <Content Include="Resources\data\images\locations\Улица Морозная.png" />
-      <Content Include="Resources\data\images\locations\Улица Новой Надежды.png" />
-      <Content Include="Resources\data\images\locations\Улица Рыбная.png" />
-      <Content Include="Resources\data\images\locations\Улица Трех Кинжалов.png" />
-      <Content Include="Resources\data\images\locations\Улица Цветочная.png" />
-      <Content Include="Resources\data\images\locations\Южная Эллада.png" />
-      <Content Include="Resources\data\items.txt" />
-      <Content Include="Resources\data\locations.yaml" />
-      <Content Include="Resources\data\quests.txt" />
-    </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
     <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
       <PropertyGroup>
