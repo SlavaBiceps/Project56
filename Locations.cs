@@ -20,6 +20,13 @@ namespace Project56
             public string Info { get; set; }
             public List<location_out> LocationsOut { get; set; }
         }
+        public class event_class
+        {
+            public string Name { get; set; }
+            public string Condition { get; set; }
+            public List<string> VariablesChange { get; set; }
+            public List<location_out> EventButtons { get; set; }
+        }
 
         private static location_class location;
         private static int i;

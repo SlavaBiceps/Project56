@@ -1,0 +1,39 @@
+- name: Погода Дождь
+  condition: <location type> == "street" && <weather> == "Дождь"
+  variablesChange:
+  - <info> = <info> Все небо заволокло тучами, и, кажется, в ближайшее время дождь не собирается заканчиваться. Если не найти быстро укрытия, можно очень быстро промокнуть и замерзнуть. 
+  eventButtons: []
+- name: Погода Облачно
+  condition: <location type> == "street" && <weather> == "Облачно"
+  variablesChange:
+  - <info> = <info> Серое и скучное небо, серые и скучные облака до горизонта, но, к счастью, дождя нет, и непонятно, собирается ли он идти в ближайшее время. 
+  eventButtons: []
+- name: Погода Ясно
+  condition: <location type> == "street" && <weather> == "Ясно"
+  variablesChange:
+  - <info> = <info> Ясное, голубое небо. Иногда проплывают редкие облака, и можно долго угадывать, на что они похожи. 
+  eventButtons: []
+- name: Погода Дождь->Облачно
+  condition: <rand> < 5 && <location type> == "street" && <weather> == "Дождь"
+  variablesChange:
+  - <info> = <info> Грозовые тучи уходят, сверкнув напоследок молнией, и наступает тишина. О прошедшем дожде напоминают многочисленные лужи. Постепенно становится теплее. 
+  - <weather> = Облачно
+  eventButtons: []
+- name: Погода Облачно->Дождь
+  condition: <rand> < 10 && <location type> == "street" && <weather> == "Облачно"
+  variablesChange:
+  - <info> = <info> С темного серого неба начинают падать крупные капли. Все небо заволокло тучами, и, кажется, в ближайшее время он не собирается заканчиваться. С каждой минутой становится холоднее. 
+  - <weather> = Дождь
+  eventButtons: []
+- name: Погода Облачно->Ясно
+  condition: <rand> < 10 && <location type> == "street" && <weather> == "Ясно"
+  variablesChange:
+  - <info> = <info> Тучи уходят, оставляя после себя легкую сырость в воздухе. 
+  - <weather> = Ясно
+  eventButtons: []
+- name: Погода Ясно->Облачно
+  condition: <rand> < 10 && <location type> == "street" && <weather> == "Облачно"
+  variablesChange:
+  - <info> = <info> Резко подул ветер. Небо начало заволакивать грустными темными тучами до горизонта. 
+  - <weather> = Облачно
+  eventButtons: []

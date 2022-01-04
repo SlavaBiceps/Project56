@@ -52,7 +52,7 @@ namespace Project56
                     return;
                 }
                 if (rand.Next(0, 100) < 5)
-                {
+                 {
                     Form1.quests["weather"] = "Ясно";
                     Form1.info.AppendText("Тучи уходят, оставляя после себя легкую сырость в воздухе. \n");
                     return;

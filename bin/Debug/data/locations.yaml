@@ -56,6 +56,7 @@
     - <time> = <time> + 2
     - <location type> = street
     - <current location> = Торговая Площадь Рилана1
+
 - fullName: Улица Трех Кинжалов1
   name: Улица Трех Кинжалов
   info: Test
@@ -66,6 +67,12 @@
     - <time> = <time> + 1
     - <location type> = street
     - <current location> = Улица Трех Кинжалов2
+  - buttonText: Торговая Площадь Рилана
+    condition:
+    variablesChange:
+      - <time> = <time> + 2
+      - <location type> = street
+      - <current location> = Торговая Площадь Рилана1
 - fullName: Улица Трех Кинжалов2
   name: Улица Трех Кинжалов
   info: Test
@@ -114,6 +121,7 @@
       - <time> = <time> + 2
       - <location type> = street
       - <current location> = Порт Рилана
+
 - fullName: Улица Морозная4
   name: Улица Морозная
   info: Test
@@ -172,6 +180,7 @@
       - <time> = <time> + 2
       - <location type> = street
       - <current location> = Порт Рилана
+
 - fullName: Улица Зларис4
   name: Улица Зларис
   info: Test
@@ -230,6 +239,7 @@
       - <time> = <time> + 2
       - <location type> = street
       - <current location> = Порт Рилана
+
 - fullName: Ветренная Аллея1
   name: Ветренная Аллея
   info: Test
@@ -294,6 +304,7 @@
       - <time> = <time> + 2
       - <location type> = street
       - <current location> = Рынок Рилана
+
 - fullName: Бульвар Новой Надежды1
   name: Бульвар Новой Надежды
   info: Test
@@ -352,6 +363,7 @@
       - <time> = <time> + 1
       - <location type> = street
       - <current location> = Цветочная Аллея3
+
 - fullName: Цветочная Аллея1
   name: Цветочная Аллея
   info: Test
@@ -422,6 +434,7 @@
       - <time> = <time> + 1
       - <location type> = street
       - <current location> = Южная Эллада1
+
 - fullName: Переулок Колсо1
   name: Переулок Колсо
   info: Test
@@ -470,6 +483,7 @@
       - <time> = <time> + 2
       - <location type> = street
       - <current location> = Базар Рилана
+
 - fullName: Переулок Солко1
   name: Переулок Солко
   info: Test
@@ -502,6 +516,7 @@
       - <time> = <time> + 1
       - <location type> = street
       - <current location> = Южная Эллада5
+
 - fullName: Южная Эллада10
   name: Южная Эллада
   info: Test
@@ -554,7 +569,7 @@
     - <time> = <time> + 1
     - <location type> = street
     - <current location> = Южная Эллада8
-  - buttonText: Южная Эллада, на восток
+  - buttonText: Южная Эллада, на северо-восток
     condition: 
     variablesChange:
     - <time> = <time> + 1
@@ -564,13 +579,13 @@
   name: Южная Эллада
   info: Test
   locationsOut:
-  - buttonText: Южная Эллада, на запад
+  - buttonText: Южная Эллада, на юго-запад
     condition: 
     variablesChange:
     - <time> = <time> + 1
     - <location type> = street
     - <current location> = Южная Эллада7
-  - buttonText: Южная Эллада, на восток
+  - buttonText: Южная Эллада, на северо-восток
     condition: 
     variablesChange:
     - <time> = <time> + 1
@@ -580,29 +595,35 @@
   name: Южная Эллада
   info: Test
   locationsOut:
-  - buttonText: Южная Эллада, на запад
+  - buttonText: Южная Эллада, на юго-запад
     condition: 
     variablesChange:
     - <time> = <time> + 1
     - <location type> = street
     - <current location> = Южная Эллада6
-  - buttonText: Южная Эллада, на восток
+  - buttonText: Южная Эллада, на северо-восток
     condition: 
     variablesChange:
     - <time> = <time> + 1
     - <location type> = street
     - <current location> = Южная Эллада4
+  - buttonText: Переулок Солко
+    condition:
+    variablesChange:
+      - <time> = <time> + 1
+      - <location type> = street
+      - <current location> = Переулок Солко2
 - fullName: Южная Эллада4
   name: Южная Эллада
   info: Test
   locationsOut:
-  - buttonText: Южная Эллада, на запад
+  - buttonText: Южная Эллада, на юго-запад
     condition: 
     variablesChange:
     - <time> = <time> + 1
     - <location type> = street
     - <current location> = Южная Эллада5
-  - buttonText: Южная Эллада, на восток
+  - buttonText: Южная Эллада, на северо-восток
     condition: 
     variablesChange:
     - <time> = <time> + 1
@@ -612,13 +633,13 @@
   name: Южная Эллада
   info: Test
   locationsOut:
-  - buttonText: Южная Эллада, на запад
+  - buttonText: Южная Эллада, на юго-запад
     condition: 
     variablesChange:
     - <time> = <time> + 1
     - <location type> = street
     - <current location> = Южная Эллада4
-  - buttonText: Южная Эллада, на восток
+  - buttonText: Южная Эллада, на север
     condition: 
     variablesChange:
     - <time> = <time> + 1
@@ -628,13 +649,13 @@
   name: Южная Эллада
   info: Test
   locationsOut:
-  - buttonText: Южная Эллада, на запад
+  - buttonText: Южная Эллада, юг
     condition: 
     variablesChange:
     - <time> = <time> + 1
     - <location type> = street
     - <current location> = Южная Эллада3
-  - buttonText: Южная Эллада, на восток
+  - buttonText: Южная Эллада, на север
     condition: 
     variablesChange:
     - <time> = <time> + 1
@@ -644,7 +665,7 @@
   name: Южная Эллада
   info: Test
   locationsOut:
-  - buttonText: Южная Эллада, на запад
+  - buttonText: Южная Эллада, на юг
     condition: 
     variablesChange:
     - <time> = <time> + 1
@@ -656,6 +677,7 @@
       - <time> = <time> + 1
       - <location type> = street
       - <current location> = Цветочная Аллея4
+
 - fullName: Торговая Площадь Рилана1
   name: Торговая Площадь
   info: Test
@@ -688,6 +710,7 @@
     - <time> = <time> + 2
     - <location type> = street
     - <current location> = Центральная Площадь Рилана
+
 - fullName: Центральная Площадь Рилана
   name: Центральная Площадь Рилана
   info: Test
@@ -704,6 +727,7 @@
     - <time> = <time> + 2
     - <location type> = street
     - <current location> = Торговая Площадь Рилана1
+
 - fullName: Порт Рилана
   name: Порт Рилана
   info: Test
@@ -738,6 +762,7 @@
       - <time> = <time> + 2
       - <location type> = street
       - <current location> = Ветренная Аллея1
+
 - fullName: Рынок Рилана
   name: Рынок Рилана
   info: Test
@@ -754,6 +779,7 @@
         - <time> = <time> + 2
         - <location type> = street
         - <current location> = Переулок Колсо1
+
 - fullName: Базар Рилана
   name: Базар Рилана
   info: Test
