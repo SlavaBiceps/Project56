@@ -90,7 +90,7 @@ namespace Project56
          private void create_all_info()
          {
              stats.Clear();
-             //info.Clear();
+             info.Clear();
              
              read_data_file();
  
