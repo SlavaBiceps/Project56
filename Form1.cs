@@ -137,7 +137,6 @@ namespace Project56
              {
                  create_buttons_location();
              }
-             add_event_buttons();
          }
          private void save_to_data()
          {
@@ -160,20 +159,8 @@ namespace Project56
          {
              read_quests();
              read_items();
-             events.check_events();
              
              info.AppendText(variables["info"]);
-         }
-         private void add_event_buttons()
-         {
-             /*
-             for (int i = 1; i <= buttons_to_create_count; i++)
-             {
-                 create_button(buttons_to_create[i].text,
-                     buttons_to_create[i].condition_out,
-                     buttons_to_create[i].type);
-             }
-             */
          }
          private void create_buttons_location()
          {
@@ -510,10 +497,9 @@ namespace Project56
                  }
                  result += symbol;
              }
-
              if (flag_string)
              {
-                 variables[toVariable] = result;
+                 variables_copy[toVariable] = result;
                  return;
              }
              variables_copy[toVariable] = ParseDouble(result).ToString();
