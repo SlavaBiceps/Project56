@@ -160,7 +160,8 @@ namespace Project56
              read_quests();
              read_items();
              
-             info.AppendText(variables["info"]);
+             info.AppendText(variables["info"]+"\n");
+             info.AppendText(variables["day time"]+"\n");
          }
          private void create_buttons_location()
          {
@@ -199,26 +200,53 @@ namespace Project56
              {
                  ReWrite(variable_change);
              }
+             
+             if (variables["current location"] != variables["location before"])
+             {
+                 location_now = Locations.get_location(variables["current location"]);
+                 foreach (var variable_change in location_now.VariablesChange)
+                 {
+                     ReWrite(variable_change);
+                 }
+             }
+
+             variables["location before"] = location_now.FullName;
              save_to_data();
              save_items();
              update();
          }
          private void create_graphics()
          {
-             
-             if (File.Exists("data/images/locations/" + location_now.Name + ".png"))
+             create_background_picture();
+         }
+         private void create_background_picture()
+         {
+             int random_count = 0;
+             int random_value = 0;
+             while (random_count < 100)
              {
-                 
-                 location_image.Image = Image.FromFile("data/images/locations/" + location_now.Name + ".png");
-             }
-             else
-             {
-                 if (File.Exists("data/images/locations/Sample.png"))
+                 random_count++;
+                 random_value = rand.Next(1, 20);
+                 if (File.Exists("data/images/locations/"+variables["image path"]+"/"+random_value+".png"))
                  {
-                     location_image.Image = Image.FromFile("data/images/locations/Sample.png");
+                     location_image.Image = Image.FromFile("data/images/locations/"+ variables["image path"]+"/"+random_value+".png");
+                     return;
                  }
              }
-             
+             random_value = 0;
+             while (random_value < 100)
+             {
+                 random_value++;
+                 if (File.Exists("data/images/locations/"+ variables["image path"]+"/"+random_value+".png"))
+                 {
+                     location_image.Image = Image.FromFile("data/images/locations/"+ variables["image path"]+"/"+random_value+".png");
+                     return;
+                 }
+             }
+             if (File.Exists("data/images/locations/Sample.png"))
+             {
+                 location_image.Image = Image.FromFile("data/images/locations/Sample.png");
+             }
          }
          private void read_quests()
          {
@@ -279,7 +307,6 @@ namespace Project56
              items_file_writer.WriteLine("END");
              items_file_writer.Close();
          }
- 
          //Размеры поля(клеток)
          public int numbers_width = 30;
          public int numbers_height = 25;
@@ -314,7 +341,7 @@ namespace Project56
 
          public bool check_condition(string input)
          {
-             if (input == null)
+             if (input == null || input == "")
              {
                  return true;
              }
@@ -327,10 +354,6 @@ namespace Project56
              for (int i = 0; i < input.Length; i++)
              {
                  char symbol = input[i];
-                 if (symbol == ' ')
-                 {
-                     continue;
-                 }
 
                  if (symbol == '<' && char.IsLetter(input[i+1]))
                  {
@@ -396,20 +419,23 @@ namespace Project56
                  }
              }
              bool flag_string = false;
+             bool found_pr = false;
              for (; i < input.Length; i++)
              {
                  char symbol = input[i];
-                 if (symbol == ' '&&flag_string==false)
+                 if (symbol == '"')
                  {
+                     found_pr = true;
                      continue;
                  }
-                 if (symbol == '"')
+                 if (symbol == ' '&&found_pr==false)
                  {
                      continue;
                  }
 
                  if (symbol == '<')
                  {
+                     found_pr = true;
                      i++;
                      symbol = input[i];
                      while (symbol!='>')
@@ -418,12 +444,21 @@ namespace Project56
                          i++;
                          symbol = input[i];
                      }
+                     
+                     foreach (var _symbol in variables[variable])
+                     {
+                         if (char.IsLetter(_symbol))
+                         {
+                             flag_string = true;
+                         }
+                     }
                      result += variables[variable];
                      variable = "";
                      continue;
                  }
                  if (char.IsLetter(symbol))
                  {
+                     found_pr = true;
                      flag_string = true;
                  }
                  result += symbol;
@@ -465,20 +500,23 @@ namespace Project56
                  }
              }
              bool flag_string = false;
+             bool found_pr = false;
              for (; i < input.Length; i++)
              {
                  char symbol = input[i];
-                 if (symbol == ' '&&flag_string==false)
+                 if (symbol == '"')
                  {
+                     found_pr = true;
                      continue;
                  }
-                 if (symbol == '"')
+                 if (symbol == ' '&&found_pr==false)
                  {
                      continue;
                  }
 
                  if (symbol == '<')
                  {
+                     found_pr = true;
                      i++;
                      symbol = input[i];
                      while (symbol!='>')
@@ -487,12 +525,29 @@ namespace Project56
                          i++;
                          symbol = input[i];
                      }
-                     result += variables[variable];
+                     //костыль для info
+                     if (variable == "info")
+                     {
+                         result += variables_copy[variable] + "\n";
+                         variable = "";
+                         continue;
+                     }
+
+                     foreach (var _symbol in variables[variable])
+                     {
+                         if (char.IsLetter(_symbol))
+                         {
+                             flag_string = true;
+                         }
+                     }
+
+                     result += variables_copy[variable];
                      variable = "";
                      continue;
                  }
                  if (char.IsLetter(symbol))
                  {
+                     found_pr = true;
                      flag_string = true;
                  }
                  result += symbol;

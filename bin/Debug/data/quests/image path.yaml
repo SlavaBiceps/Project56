@@ -1,0 +1,10 @@
+- name: Поставить для обычного
+  condition: ''
+  variablesChange:
+  - <image path> = <image type>
+  eventButtons: []
+- name: Для времени суток
+  condition: <image type> == "basic street" || <image type> == "basic port" || <image type> == "basic market" || <image type> == "basic square" || <image type> == "basic bad street"
+  variablesChange:
+  - <image path> = <image type>/<day time>
+  eventButtons: []

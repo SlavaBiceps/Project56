@@ -18,6 +18,7 @@ namespace Project56
             public string FullName { get; set; }
             public string Name { get; set; }
             public string Info { get; set; }
+            public List<string> VariablesChange { get; set; }
             public List<location_out> LocationsOut { get; set; }
         }
         public class event_class

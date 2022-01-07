@@ -1,0 +1,10 @@
+- name: Время День
+  condition: <time hours> >= 9 && <time hours> <= 21
+  variablesChange:
+  - <day time> = "День" 
+  eventButtons: []
+- name: Время Ночь
+  condition: <time hours> < 9 || <time hours> > 21
+  variablesChange:
+  - <day time> = "Ночь" 
+  eventButtons: []
