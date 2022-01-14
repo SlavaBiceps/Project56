@@ -1,16 +1,16 @@
-current location: Рынок Рилана
-time: 36
-time hours: 00
-time minutes: 34
+current location: Торговая Площадь Рилана1
+time: 121
+time hours: 02
+time minutes: 01
 location type: street
 state: none
-info: >2-
-
+locations open: open
+info: >2
    Ясное, голубое небо. Иногда проплывают редкие облака, и можно долго угадывать, на что они похожи.
 weather: Ясно
-inventory open: closed
-location before: Рынок Рилана
+location before: Торговая Площадь Рилана1
 image type: basic market
 day time: Ночь
-image path: basic street/Ночь
+image path: basic market/Ночь
+player: Первая
 

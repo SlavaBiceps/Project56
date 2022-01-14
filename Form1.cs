@@ -24,6 +24,7 @@ namespace Project56
              info = new RichTextBox();
              stats = new RichTextBox();
              rand = new Random();
+             
          }
          private void Form1_Load(object sender, EventArgs e)
          {
@@ -91,17 +92,12 @@ namespace Project56
          {
              stats.Clear();
              info.Clear();
+             buttons_to_create =new List<KeyValuePair<string, List<string>>>();
              
              read_data_file();
- 
-             add_stats();
          }
          private void read_data_file()
          {
-             var deserializer = new YamlDotNet.Serialization.DeserializerBuilder()
-                 .WithNamingConvention(CamelCaseNamingConvention.Instance)
-                 .Build();
-            
              variables = deserializer.Deserialize<Dictionary<string, string>>(File.ReadAllText("data/data.yaml"));
              
              //Special for time
@@ -123,30 +119,59 @@ namespace Project56
          {
              stats.AppendText("Time\n");
              stats.AppendText(variables["time hours"] + ":" + variables["time minutes"] + "\n");
+             stats.AppendText("\n");
+             
+             stats.AppendText(player_now.name+"\n");
+             stats.AppendText(player_now.hp+"/100 HP"+"\n");
+             stats.AppendText(player_now.mana+"/100 MP"+"\n");
+             stats.AppendText("\n");
          }
          private void create_buttons()
          {
              //количество уже созданных кнопок
              button_count = 0;
+             //считывание игрока
+             read_players();
              //считывание локации
              read_location();
              //считывание евентов
              add_info();
+             add_stats();
              //создание кнопок локаций
-             if (variables["state"] == "none" && variables["inventory open"] == "closed")
+             if (variables["state"] == "none")
              {
                  create_buttons_location();
              }
+             create_other_buttons();
          }
          private void save_to_data()
          {
-             var serializer = new SerializerBuilder()
-                 .WithNamingConvention(CamelCaseNamingConvention.Instance)
-                 .Build();
              var result = serializer.Serialize(variables);
              StreamWriter data_file_writer = new StreamWriter("data/data.yaml");
              data_file_writer.WriteLine(result);
              data_file_writer.Close();
+         }
+         private void save_to_players()
+         {
+             var result = serializer.Serialize(players);
+             StreamWriter data_file_writer = new StreamWriter("data/players.yaml");
+             data_file_writer.WriteLine(result);
+             data_file_writer.Close();
+         }
+         private void read_players()
+         {
+             players = deserializer.Deserialize<List<Players.player_class>>(File.ReadAllText("data/players.yaml"));
+
+             foreach (var _player in players)
+             {
+                 if (_player.name == variables["player"])
+                 {
+                     player_now = _player;
+                     break;
+                 }
+             }
+             
+             variables["current location"] = player_now.location;
          }
          private void read_location()
          {
@@ -158,10 +183,11 @@ namespace Project56
          private void add_info()
          {
              read_quests();
-             read_items();
-             
              info.AppendText(variables["info"]+"\n");
              info.AppendText(variables["day time"]+"\n");
+             
+             check_quests();
+             
          }
          private void create_buttons_location()
          {
@@ -170,6 +196,13 @@ namespace Project56
                  create_button(location_out.ButtonText,
                      location_out.Condition,
                      location_out.VariablesChange);
+             }
+         }
+         private void create_other_buttons()
+         {
+             foreach (var _button in buttons_to_create)
+             {
+                 create_button(_button.Key,"",_button.Value);
              }
          }
          private void create_button(string text, string condition_out, List<string> variables_change)
@@ -211,8 +244,11 @@ namespace Project56
              }
 
              variables["location before"] = location_now.FullName;
+             
+             player_now.location = variables["current location"];
+             
+             save_to_players();
              save_to_data();
-             save_items();
              update();
          }
          private void create_graphics()
@@ -250,10 +286,6 @@ namespace Project56
          }
          private void read_quests()
          {
-             var deserializer = new YamlDotNet.Serialization.DeserializerBuilder()
-                 .WithNamingConvention(CamelCaseNamingConvention.Instance)
-                 .Build();
-            
              var events_file = deserializer.Deserialize<List<string>>(File.ReadAllText("data/quests/events.yaml"));
              variables_copy=new Dictionary<string, string>();
              foreach (var variable in variables)
@@ -279,33 +311,16 @@ namespace Project56
                      }
                  }
              }
+
              variables=new Dictionary<string, string>();
              foreach (var variable in variables_copy)
              {
                  variables.Add(variable.Key,variable.Value);
              }
          }
-         private void read_items()
+         private void check_quests()
          {
-             StreamReader file = new StreamReader("data/items.txt");
-             string item_string = file.ReadLine();
-             while (item_string != "END")
-             {
-                 inventory[item_string] = Convert.ToInt32(file.ReadLine());
-                 item_string = file.ReadLine();
-             }
-             file.Close();
-         }
-         private void save_items()
-         {
-             StreamWriter items_file_writer = new StreamWriter("data/items.txt");
-             foreach (var item in inventory)
-             {
-                 items_file_writer.WriteLine(item.Key);
-                 items_file_writer.WriteLine(item.Value);
-             }
-             items_file_writer.WriteLine("END");
-             items_file_writer.Close();
+             Players.check_inventory();
          }
          //Размеры поля(клеток)
          public int numbers_width = 30;
@@ -318,6 +333,8 @@ namespace Project56
          public static RichTextBox stats;
          //Количество уже созданных кнопок, чтобы создавать следущую на новом месте
          public int button_count;
+         //Текущий игрок
+         public static Players.player_class player_now;
          //Текущая локация
          public static Locations.location_class location_now;
          //Картинка
@@ -326,17 +343,24 @@ namespace Project56
          public static Dictionary<string, string> variables = new Dictionary<string, string>();
          //Копия переменных для events
          public static Dictionary<string,string> variables_copy = new Dictionary<string, string>();
-         //Активные/Все квесты
-         public static Dictionary<string, string> quests = new Dictionary<string, string>();
          //вроде переходы по кнопкам
          public static List<string>[] button_change_variables = new List<string>[102];
-         //инвентарь
-         public static Dictionary<string, int> inventory = new Dictionary<string, int>();
+         //игрок+нпс
+         public static List<Players.player_class> players = new List<Players.player_class>();
          //public static events.buttons_to_create[] buttons_to_create = new events.buttons_to_create[102];
          private static Random rand;
          //
+         public static List<KeyValuePair<string, List<string>>> buttons_to_create =new List<KeyValuePair<string, List<string>>>();
+         //
          private Button[] buttons;
-
+         
+         IDeserializer deserializer = new YamlDotNet.Serialization.DeserializerBuilder()
+             .WithNamingConvention(CamelCaseNamingConvention.Instance)
+             .Build();
+         
+         ISerializer serializer = new SerializerBuilder()
+             .WithNamingConvention(CamelCaseNamingConvention.Instance)
+             .Build();
 
 
          public bool check_condition(string input)
@@ -432,12 +456,19 @@ namespace Project56
                  {
                      continue;
                  }
-
+                 if (symbol == '\\' && input[i + 1] == 'n')
+                 {
+                     found_pr = true;
+                     i++;
+                     result += "\n";
+                     continue;
+                 }
                  if (symbol == '<')
                  {
                      found_pr = true;
                      i++;
                      symbol = input[i];
+
                      while (symbol!='>')
                      {
                          variable += symbol;
@@ -513,7 +544,13 @@ namespace Project56
                  {
                      continue;
                  }
-
+                 if (symbol == '\\' && input[i + 1] == 'n')
+                 {
+                     found_pr = true;
+                     i++;
+                     result += "\n";
+                     continue;
+                 }
                  if (symbol == '<')
                  {
                      found_pr = true;
@@ -525,14 +562,6 @@ namespace Project56
                          i++;
                          symbol = input[i];
                      }
-                     //костыль для info
-                     if (variable == "info")
-                     {
-                         result += variables_copy[variable] + "\n";
-                         variable = "";
-                         continue;
-                     }
-
                      foreach (var _symbol in variables[variable])
                      {
                          if (char.IsLetter(_symbol))

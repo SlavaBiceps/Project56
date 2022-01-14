@@ -1,6 +1,6 @@
 - fullName: Улица Рыбная1
   name: Улица Рыбная
-  info: Test
+  info: На этой улице воняло рыбой. Рыбой воняло во всем городе, и было непонятно, почему именно эта улица удостоилась названия в честь этого. Возможно, название произошло от рыбного рынка неподалеку.
   variablesChange:
   - <time> = <time> + 1
   - <location type> = street
@@ -10,9 +10,13 @@
     condition: 
     variablesChange:
     - <current location> = Улица Рыбная2
+  - buttonText: Рыбный Рынок
+    condition:
+    variablesChange:
+      - <current location> = Рыбный Рынок
 - fullName: Улица Рыбная2
   name: Улица Рыбная
-  info: Test
+  info: На этой улице воняло рыбой. Рыбой воняло во всем городе, и было непонятно, почему именно эта улица удостоилась названия в честь этого. Возможно, название произошло от рыбного рынка неподалеку.
   variablesChange:
   - <time> = <time> + 1
   - <location type> = street
@@ -28,7 +32,7 @@
     - <current location> = Улица Рыбная3
 - fullName: Улица Рыбная3
   name: Улица Рыбная
-  info: Test
+  info: На этой улице воняло рыбой. Рыбой воняло во всем городе, и было непонятно, почему именно эта улица удостоилась названия в честь этого. Возможно, название произошло от рыбного рынка неподалеку.
   variablesChange:
     - <time> = <time> + 1
     - <location type> = street
@@ -44,7 +48,7 @@
     - <current location> = Улица Рыбная4
 - fullName: Улица Рыбная4
   name: Улица Рыбная
-  info: Test
+  info: На этой улице воняло рыбой. Рыбой воняло во всем городе, и было непонятно, почему именно эта улица удостоилась названия в честь этого. Возможно, название произошло от рыбного рынка неподалеку.
   variablesChange:
     - <time> = <time> + 1
     - <location type> = street
@@ -59,9 +63,22 @@
     variablesChange:
     - <current location> = Торговая Площадь Рилана1
 
+- fullName: Рыбный Рынок
+  name: Рыбный Рынок
+  info: Рыбный рынок был оживленным местом. Не сложно было догадаться, что повсюду торговали морскими продуктами. Хоть рынок и располагался в не самом приятном районе, здесь всегда был самый богатый выбор, низкие цены и свежая продукция.
+  variablesChange:
+    - <time> = <time> + 2
+    - <location type> = street
+    - <image type> = basic market
+  locationsOut:
+    - buttonText: Улица Рыбная
+      condition:
+      variablesChange:
+        - <current location> = Улица Рыбная1
+
 - fullName: Улица Трех Кинжалов1
   name: Улица Трех Кинжалов
-  info: Test
+  info: Короткая, как кинжал улица соединяла Порт и Торговую площадь - центральные места города.
   variablesChange:
     - <time> = <time> + 1
     - <location type> = street
@@ -77,7 +94,7 @@
     - <current location> = Торговая Площадь Рилана1
 - fullName: Улица Трех Кинжалов2
   name: Улица Трех Кинжалов
-  info: Test
+  info: Короткая, как кинжал улица соединяла Порт и Торговую площадь - центральные места города.
   variablesChange:
     - <time> = <time> + 1
     - <location type> = street
@@ -93,7 +110,7 @@
     - <current location> = Улица Трех Кинжалов3
 - fullName: Улица Трех Кинжалов3
   name: Улица Трех Кинжалов
-  info: Test
+  info: Короткая, как кинжал улица соединяла Порт и Торговую площадь - центральные места города.
   variablesChange:
     - <time> = <time> + 1
     - <location type> = street
@@ -109,7 +126,7 @@
     - <current location> = Улица Трех Кинжалов4
 - fullName: Улица Трех Кинжалов4
   name: Улица Трех Кинжалов
-  info: Test
+  info: Короткая, как кинжал улица соединяла Порт и Торговую площадь - центральные места города.
   variablesChange:
     - <time> = <time> + 1
     - <location type> = street
@@ -126,7 +143,7 @@
 
 - fullName: Улица Морозная4
   name: Улица Морозная
-  info: Test
+  info: Здесь было неспокойно. Неужели действительно мороз пробежал по коже?
   variablesChange:
     - <time> = <time> + 1
     - <location type> = street
@@ -138,7 +155,7 @@
     - <current location> = Улица Морозная3
 - fullName: Улица Морозная3
   name: Улица Морозная
-  info: Test
+  info: Здесь было неспокойно. Неужели действительно мороз пробежал по коже?
   variablesChange:
     - <time> = <time> + 1
     - <location type> = street
@@ -157,7 +174,7 @@
     - <image type> = basic street
 - fullName: Улица Морозная2
   name: Улица Морозная
-  info: Test
+  info: Здесь было неспокойно. Неужели действительно мороз пробежал по коже?
   variablesChange:
     - <time> = <time> + 1
     - <location type> = street
@@ -173,7 +190,7 @@
     - <current location> = Улица Морозная1
 - fullName: Улица Морозная1
   name: Улица Морозная
-  info: Test
+  info: Здесь было неспокойно. Неужели действительно мороз пробежал по коже?
   variablesChange:
     - <time> = <time> + 1
     - <location type> = street

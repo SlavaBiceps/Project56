@@ -34,17 +34,20 @@ namespace Project56
         private static string location_number;
         public static location_class get_location(string get_location_number)
         {
+            
             var deserializer = new YamlDotNet.Serialization.DeserializerBuilder()
                 .WithNamingConvention(CamelCaseNamingConvention.Instance)
                 .Build();
-            
-            var locations = deserializer.Deserialize<List<location_class>>(File.ReadAllText("data/locations.yaml"));
-            
-            foreach (var location in locations)
+            var locations_files = deserializer.Deserialize<List<string>>(File.ReadAllText("data/locations/locations.yaml"));
+            foreach (var locations_file in locations_files)
             {
-                if (location.FullName == get_location_number)
+                var locations = deserializer.Deserialize<List<Locations.location_class>>(File.ReadAllText("data/locations/"+locations_file));
+                foreach (var location in locations)
                 {
-                    return location;
+                    if (location.FullName == get_location_number)
+                    {
+                        return location;
+                    }
                 }
             }
 

@@ -101,18 +101,16 @@
         </Reference>
     </ItemGroup>
     <ItemGroup>
-        <Compile Include="events.cs" />
         <Compile Include="Form1.cs">
             <SubType>Form</SubType>
         </Compile>
         <Compile Include="Form1.Designer.cs">
             <DependentUpon>Form1.cs</DependentUpon>
         </Compile>
-        <Compile Include="items.cs" />
         <Compile Include="Locations.cs" />
+        <Compile Include="Players.cs" />
         <Compile Include="Program.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
-        <Compile Include="variables_change.cs" />
         <EmbeddedResource Include="Form1.resx">
           <DependentUpon>Form1.cs</DependentUpon>
         </EmbeddedResource>
@@ -145,6 +143,64 @@
     </ItemGroup>
     <ItemGroup>
       <Content Include="bin\Debug\data\data.yaml" />
+      <Content Include="bin\Debug\data\images\locations\basic bad street\День\1.png" />
+      <Content Include="bin\Debug\data\images\locations\basic bad street\Ночь\1.png" />
+      <Content Include="bin\Debug\data\images\locations\basic bad street\Ночь\2.png" />
+      <Content Include="bin\Debug\data\images\locations\basic bad street\Ночь\3.png" />
+      <Content Include="bin\Debug\data\images\locations\basic market\День\1.png" />
+      <Content Include="bin\Debug\data\images\locations\basic market\День\2.png" />
+      <Content Include="bin\Debug\data\images\locations\basic market\День\3.png" />
+      <Content Include="bin\Debug\data\images\locations\basic market\День\4.png" />
+      <Content Include="bin\Debug\data\images\locations\basic market\День\5.png" />
+      <Content Include="bin\Debug\data\images\locations\basic market\День\6.png" />
+      <Content Include="bin\Debug\data\images\locations\basic market\День\8.png" />
+      <Content Include="bin\Debug\data\images\locations\basic market\День\9.png" />
+      <Content Include="bin\Debug\data\images\locations\basic market\Ночь\1.png" />
+      <Content Include="bin\Debug\data\images\locations\basic port\День\1.png" />
+      <Content Include="bin\Debug\data\images\locations\basic port\День\2.png" />
+      <Content Include="bin\Debug\data\images\locations\basic port\День\3.png" />
+      <Content Include="bin\Debug\data\images\locations\basic port\День\4.png" />
+      <Content Include="bin\Debug\data\images\locations\basic port\День\5.png" />
+      <Content Include="bin\Debug\data\images\locations\basic port\День\6.png" />
+      <Content Include="bin\Debug\data\images\locations\basic port\День\7.png" />
+      <Content Include="bin\Debug\data\images\locations\basic port\Ночь\1.png" />
+      <Content Include="bin\Debug\data\images\locations\basic port\Ночь\2.png" />
+      <Content Include="bin\Debug\data\images\locations\basic square\День\1.png" />
+      <Content Include="bin\Debug\data\images\locations\basic square\День\2.png" />
+      <Content Include="bin\Debug\data\images\locations\basic street\Вечер\1.png" />
+      <Content Include="bin\Debug\data\images\locations\basic street\День\1.png" />
+      <Content Include="bin\Debug\data\images\locations\basic street\День\2.png" />
+      <Content Include="bin\Debug\data\images\locations\basic street\День\3.png" />
+      <Content Include="bin\Debug\data\images\locations\basic street\День\4.png" />
+      <Content Include="bin\Debug\data\images\locations\basic street\День\5.png" />
+      <Content Include="bin\Debug\data\images\locations\basic street\День\6.png" />
+      <Content Include="bin\Debug\data\images\locations\basic street\День\7.png" />
+      <Content Include="bin\Debug\data\images\locations\basic street\Ночь\10.png" />
+      <Content Include="bin\Debug\data\images\locations\basic street\Ночь\11.png" />
+      <Content Include="bin\Debug\data\images\locations\basic street\Ночь\12.png" />
+      <Content Include="bin\Debug\data\images\locations\basic street\Ночь\13.png" />
+      <Content Include="bin\Debug\data\images\locations\basic street\Ночь\14.png" />
+      <Content Include="bin\Debug\data\images\locations\basic street\Ночь\15.png" />
+      <Content Include="bin\Debug\data\images\locations\basic street\Ночь\16.png" />
+      <Content Include="bin\Debug\data\images\locations\basic street\Ночь\17.png" />
+      <Content Include="bin\Debug\data\images\locations\basic street\Ночь\18.png" />
+      <Content Include="bin\Debug\data\images\locations\basic street\Ночь\2.png" />
+      <Content Include="bin\Debug\data\images\locations\basic street\Ночь\3.png" />
+      <Content Include="bin\Debug\data\images\locations\basic street\Ночь\4.png" />
+      <Content Include="bin\Debug\data\images\locations\basic street\Ночь\5.png" />
+      <Content Include="bin\Debug\data\images\locations\basic street\Ночь\6.png" />
+      <Content Include="bin\Debug\data\images\locations\basic street\Ночь\7.png" />
+      <Content Include="bin\Debug\data\images\locations\basic street\Ночь\8.png" />
+      <Content Include="bin\Debug\data\images\locations\basic street\Ночь\9.png" />
+      <Content Include="bin\Debug\data\images\locations\basic tavern\1.png" />
+      <Content Include="bin\Debug\data\images\locations\basic tavern\1886598.jpg" />
+      <Content Include="bin\Debug\data\images\locations\basic tavern\5fa4648860b7bab90bdea5b446f70c6a_original.jpg" />
+      <Content Include="bin\Debug\data\images\locations\basic tavern\dnd-adventures-tavern.jpg" />
+      <Content Include="bin\Debug\data\images\locations\basic tavern\DnD-tavern-scene.jpg" />
+      <Content Include="bin\Debug\data\images\locations\basic tavern\Fantasy-Tavern-low900.jpg" />
+      <Content Include="bin\Debug\data\images\locations\basic tavern\Tavern%2Bart.jpg" />
+      <Content Include="bin\Debug\data\images\locations\basic tavern\tavern_by_hunqwert-d33der1-465.jpg" />
+      <Content Include="bin\Debug\data\images\locations\basic tavern\vladimir-krisetskiy-tavern-06.jpg" />
       <Content Include="bin\Debug\data\images\locations\non-used.png" />
       <Content Include="bin\Debug\data\images\locations\non-used2.png" />
       <Content Include="bin\Debug\data\images\locations\Sample.png" />
@@ -168,8 +224,17 @@
       <Content Include="bin\Debug\data\images\locations\Южная Эллада.png" />
       <Content Include="bin\Debug\data\images\locations\Ярмарка.png" />
       <Content Include="bin\Debug\data\items.txt" />
+      <Content Include="bin\Debug\data\items.yaml" />
       <Content Include="bin\Debug\data\locations.yaml" />
+      <Content Include="bin\Debug\data\locations\locations.yaml" />
+      <Content Include="bin\Debug\data\locations\Rilan.yaml" />
+      <Content Include="bin\Debug\data\names.txt" />
+      <Content Include="bin\Debug\data\players.yaml" />
       <Content Include="bin\Debug\data\quests.txt" />
+      <Content Include="bin\Debug\data\quests\day time.yaml" />
+      <Content Include="bin\Debug\data\quests\events.yaml" />
+      <Content Include="bin\Debug\data\quests\image path.yaml" />
+      <Content Include="bin\Debug\data\quests\weather.yaml" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
     <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
