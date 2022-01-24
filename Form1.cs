@@ -78,7 +78,7 @@ namespace Project56
                  buttons[i].Visible = false;
              }
          }
-         private void update()
+         public void update()
          {
              for(int i=1;i<16;i++)
              {
@@ -90,11 +90,10 @@ namespace Project56
          }
          private void create_all_info()
          {
-             stats.Clear();
-             info.Clear();
              buttons_to_create =new List<KeyValuePair<string, List<string>>>();
              
              read_data_file();
+             read_states();
          }
          private void read_data_file()
          {
@@ -115,15 +114,20 @@ namespace Project56
              //Special for Info
              variables["info"] = "";
          }
+         private void read_states()
+         {
+             states = deserializer.Deserialize<List<string>>(File.ReadAllText("data/states.yaml"));
+             variables["state"] = states.Last();
+         }
          private void add_stats()
          {
              stats.AppendText("Time\n");
              stats.AppendText(variables["time hours"] + ":" + variables["time minutes"] + "\n");
              stats.AppendText("\n");
              
-             stats.AppendText(player_now.name+"\n");
-             stats.AppendText(player_now.hp+"/100 HP"+"\n");
-             stats.AppendText(player_now.mana+"/100 MP"+"\n");
+             stats.AppendText(player_now.types["Полное имя"]+"\n");
+             stats.AppendText(player_now.chars["Здоровье"]+"/"+player_now.chars["ЗдоровьеМакс"]+" HP"+"\n");
+             stats.AppendText(player_now.chars["Мана"]+"/"+player_now.chars["МанаМакс"]+" MP"+"\n");
              stats.AppendText("\n");
          }
          private void create_buttons()
@@ -144,34 +148,37 @@ namespace Project56
              }
              create_other_buttons();
          }
-         private void save_to_data()
+         public static void save_to_data()
          {
              var result = serializer.Serialize(variables);
              StreamWriter data_file_writer = new StreamWriter("data/data.yaml");
              data_file_writer.WriteLine(result);
              data_file_writer.Close();
+             
+             result = serializer.Serialize(states);
+             data_file_writer = new StreamWriter("data/states.yaml");
+             data_file_writer.WriteLine(result);
+             data_file_writer.Close();
          }
-         private void save_to_players()
+         public static void save_to_players()
          {
              var result = serializer.Serialize(players);
              StreamWriter data_file_writer = new StreamWriter("data/players.yaml");
              data_file_writer.WriteLine(result);
              data_file_writer.Close();
          }
-         private void read_players()
+         private static void read_players()
          {
              players = deserializer.Deserialize<List<Players.player_class>>(File.ReadAllText("data/players.yaml"));
 
              foreach (var _player in players)
              {
-                 if (_player.name == variables["player"])
+                 if (_player.types["Полное имя"] == variables["player"])
                  {
                      player_now = _player;
                      break;
                  }
              }
-             
-             variables["current location"] = player_now.location;
          }
          private void read_location()
          {
@@ -184,7 +191,6 @@ namespace Project56
          {
              read_quests();
              info.AppendText(variables["info"]+"\n");
-             info.AppendText(variables["day time"]+"\n");
              
              check_quests();
              
@@ -229,6 +235,98 @@ namespace Project56
          private void button_reaction(object sender, EventArgs e)
          {
              Button button = sender as Button;
+             info.Clear();
+             stats.Clear();
+             variables["location before"] = location_now.FullName;
+             
+             if (button_change_variables[button.TabIndex].Contains("button_equip_reaction"))
+             {
+                 Players.equip(button_change_variables[button.TabIndex][1],
+                     button_change_variables[button.TabIndex][2],
+                     button_change_variables[button.TabIndex][3]);
+                 save_to_players();
+                 save_to_data();
+                 update();
+                 return;
+             }
+             
+             if (button_change_variables[button.TabIndex].Contains("button_open_menu"))
+             {
+                 
+                 save_to_players();
+                 save_to_data();
+                 update();
+                 return;
+             }
+             
+             if (button_change_variables[button.TabIndex].Contains("button_open_inv"))
+             {
+                 states.Add("inventory open");
+                 save_to_players();
+                 save_to_data();
+                 update();
+                 return;
+             }
+             
+             if (button_change_variables[button.TabIndex].Contains("button_close_inv"))
+             {
+                 states.RemoveAt(states.Count-1);
+                 save_to_players();
+                 save_to_data();
+                 update();
+                 return;
+             }
+             
+             if (button_change_variables[button.TabIndex].Contains("open_menu_reaction"))
+             {
+                 states.Add("open menu");
+                 save_to_players();
+                 save_to_data();
+                 update();
+                 return;
+             }
+             
+             if (button_change_variables[button.TabIndex].Contains("close_menu_reaction"))
+             {
+                 states.RemoveAt(states.Count-1);
+                 save_to_players();
+                 save_to_data();
+                 update();
+                 return;
+             }
+             
+             if (button_change_variables[button.TabIndex].Contains("Save Game"))
+             {
+                 var result = serializer.Serialize(players);
+                 StreamWriter data_file_writer = new StreamWriter("data/saves/1/players.yaml");
+                 data_file_writer.WriteLine(result);
+                 data_file_writer.Close();
+                 result = serializer.Serialize(variables);
+                 data_file_writer = new StreamWriter("data/saves/1/data.yaml");
+                 data_file_writer.WriteLine(result);
+                 data_file_writer.Close();
+                 result = serializer.Serialize(states);
+                 data_file_writer = new StreamWriter("data/saves/1/states.yaml");
+                 data_file_writer.WriteLine(result);
+                 data_file_writer.Close();
+                 save_to_players();
+                 save_to_data();
+                 update();
+                 return;
+             }
+             
+             if (button_change_variables[button.TabIndex].Contains("Load Game"))
+             {
+                 variables = deserializer.Deserialize<Dictionary<string, string>>(File.ReadAllText("data/saves/1/data.yaml"));
+                 players = deserializer.Deserialize<List<Players.player_class>>(File.ReadAllText("data/saves/1/players.yaml"));
+                 states = deserializer.Deserialize<List<string>>(File.ReadAllText("data/saves/1/states.yaml"));
+
+                 save_to_players();
+                 save_to_data();
+                 update();
+                 return;
+             }
+             
              foreach (var variable_change in button_change_variables[button.TabIndex])
              {
                  ReWrite(variable_change);
@@ -243,9 +341,7 @@ namespace Project56
                  }
              }
 
-             variables["location before"] = location_now.FullName;
              
-             player_now.location = variables["current location"];
              
              save_to_players();
              save_to_data();
@@ -259,12 +355,18 @@ namespace Project56
          {
              int random_count = 0;
              int random_value = 0;
+             if (variables["current location"] == variables["location before"])
+             {
+                 location_image.Image = Image.FromFile("data/images/locations/"+ variables["image path"]+"/"+variables["random image"]+".png");
+                 return;
+             }
              while (random_count < 100)
              {
                  random_count++;
                  random_value = rand.Next(1, 20);
                  if (File.Exists("data/images/locations/"+variables["image path"]+"/"+random_value+".png"))
                  {
+                     variables["random image"] = random_value.ToString();
                      location_image.Image = Image.FromFile("data/images/locations/"+ variables["image path"]+"/"+random_value+".png");
                      return;
                  }
@@ -275,6 +377,7 @@ namespace Project56
                  random_value++;
                  if (File.Exists("data/images/locations/"+ variables["image path"]+"/"+random_value+".png"))
                  {
+                     variables["random image"] = random_value.ToString();
                      location_image.Image = Image.FromFile("data/images/locations/"+ variables["image path"]+"/"+random_value+".png");
                      return;
                  }
@@ -321,6 +424,8 @@ namespace Project56
          private void check_quests()
          {
              Players.check_inventory();
+
+             Players.open_menu();
          }
          //Размеры поля(клеток)
          public int numbers_width = 30;
@@ -332,7 +437,7 @@ namespace Project56
          //Текстовое поле(статы)
          public static RichTextBox stats;
          //Количество уже созданных кнопок, чтобы создавать следущую на новом месте
-         public int button_count;
+         public static int button_count;
          //Текущий игрок
          public static Players.player_class player_now;
          //Текущая локация
@@ -348,17 +453,20 @@ namespace Project56
          //игрок+нпс
          public static List<Players.player_class> players = new List<Players.player_class>();
          //public static events.buttons_to_create[] buttons_to_create = new events.buttons_to_create[102];
+         //Рандом
          private static Random rand;
-         //
+         //кнопки для создания, buttons_to_create - через Ж с костылями для каждого
          public static List<KeyValuePair<string, List<string>>> buttons_to_create =new List<KeyValuePair<string, List<string>>>();
-         //
-         private Button[] buttons;
-         
-         IDeserializer deserializer = new YamlDotNet.Serialization.DeserializerBuilder()
+         //все кнопки
+         private static Button[] buttons;
+         //Состояния
+         public static List<string> states = new List<string>();
+
+         static IDeserializer deserializer = new YamlDotNet.Serialization.DeserializerBuilder()
              .WithNamingConvention(CamelCaseNamingConvention.Instance)
              .Build();
-         
-         ISerializer serializer = new SerializerBuilder()
+
+         static ISerializer serializer = new SerializerBuilder()
              .WithNamingConvention(CamelCaseNamingConvention.Instance)
              .Build();
 

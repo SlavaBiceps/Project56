@@ -6,6 +6,7 @@ namespace Project56
 {
     public class Locations
     {
+        //Вызодная локация = кнопка с условием
         public class location_out
         {
             public string ButtonText { get; set; }
@@ -13,6 +14,7 @@ namespace Project56
             public List<string> VariablesChange { get; set; }
         
         }
+        //Локация и вся информация о ней
         public class location_class
         {
             public string FullName { get; set; }
@@ -21,6 +23,7 @@ namespace Project56
             public List<string> VariablesChange { get; set; }
             public List<location_out> LocationsOut { get; set; }
         }
+        //Что ты тут забыл бля
         public class event_class
         {
             public string Name { get; set; }
@@ -28,10 +31,7 @@ namespace Project56
             public List<string> VariablesChange { get; set; }
             public List<location_out> EventButtons { get; set; }
         }
-
-        private static location_class location;
-        private static int i;
-        private static string location_number;
+        //получить все о локации по названию
         public static location_class get_location(string get_location_number)
         {
             

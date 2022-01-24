@@ -235,6 +235,7 @@
       <Content Include="bin\Debug\data\quests\events.yaml" />
       <Content Include="bin\Debug\data\quests\image path.yaml" />
       <Content Include="bin\Debug\data\quests\weather.yaml" />
+      <Content Include="bin\Debug\data\states.yaml" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
     <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
