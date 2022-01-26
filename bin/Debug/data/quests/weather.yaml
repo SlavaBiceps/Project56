@@ -14,25 +14,25 @@
   - <info> = <info>Ясное, голубое небо. Иногда проплывают редкие облака, и можно долго угадывать, на что они похожи.\n
   eventButtons: []
 - name: Погода Дождь->Облачно
-  condition: <rand> < 5 && <location type> == "street" && <weather> == "Дождь"
+  condition: <rand> < 5 && <location type> == "street" && <weather> == "Дождь" && <time> != <previous time>
   variablesChange:
   - <info> = <info>Грозовые тучи уходят, сверкнув напоследок молнией, и наступает тишина. О прошедшем дожде напоминают многочисленные лужи. Постепенно становится теплее.\n
   - <weather> = Облачно
   eventButtons: []
 - name: Погода Облачно->Дождь
-  condition: <rand> < 10 && <location type> == "street" && <weather> == "Облачно"
+  condition: <rand> < 10 && <location type> == "street" && <weather> == "Облачно" && <time> != <previous time>
   variablesChange:
   - <info> = <info>С темного серого неба начинают падать крупные капли. Все небо заволокло тучами, и, кажется, в ближайшее время он не собирается заканчиваться. С каждой минутой становится холоднее.\n
   - <weather> = Дождь
   eventButtons: []
 - name: Погода Облачно->Ясно
-  condition: <rand> < 10 && <location type> == "street" && <weather> == "Облачно"
+  condition: <rand> < 10 && <location type> == "street" && <weather> == "Облачно" && <time> != <previous time>
   variablesChange:
   - <info> = <info>Тучи уходят, оставляя после себя легкую сырость в воздухе.
   - <weather> = Ясно
   eventButtons: []
 - name: Погода Ясно->Облачно
-  condition: <rand> < 10 && <location type> == "street" && <weather> == "Ясно"
+  condition: <rand> < 10 && <location type> == "street" && <weather> == "Ясно" && <time> != <previous time>
   variablesChange:
   - <info> = <info>Резко подул ветер. Небо начало заволакивать грустными темными тучами до горизонта.\n
   - <weather> = Облачно

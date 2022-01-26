@@ -129,6 +129,13 @@ namespace Project56
              stats.AppendText(player_now.chars["Здоровье"]+"/"+player_now.chars["ЗдоровьеМакс"]+" HP"+"\n");
              stats.AppendText(player_now.chars["Мана"]+"/"+player_now.chars["МанаМакс"]+" MP"+"\n");
              stats.AppendText("\n");
+             stats.AppendText("\n");
+             stats.AppendText("Текущая экипировка\n");
+             if (player_now.types.ContainsKey("Голова")) stats.AppendText("Голова - " + player_now.types["Голова"]+"\n");
+             if (player_now.types.ContainsKey("Тело")) stats.AppendText("Тело - " + player_now.types["Тело"]+"\n");
+             if (player_now.types.ContainsKey("Руки")) stats.AppendText("Руки - " + player_now.types["Руки"]+"\n");
+             if (player_now.types.ContainsKey("Ноги")) stats.AppendText("Ноги - " + player_now.types["Ноги"]+"\n");
+             if (player_now.types.ContainsKey("Обувь")) stats.AppendText("Обувь - " + player_now.types["Обувь"]+"\n");
          }
          private void create_buttons()
          {
@@ -190,9 +197,10 @@ namespace Project56
          private void add_info()
          {
              read_quests();
+             check_quests();
              info.AppendText(variables["info"]+"\n");
              
-             check_quests();
+             info.AppendText("В этом месте "+variables["NPC count"]+" Человек рядом"+"\n");
              
          }
          private void create_buttons_location()
@@ -238,8 +246,9 @@ namespace Project56
              info.Clear();
              stats.Clear();
              variables["location before"] = location_now.FullName;
+             variables["location before name"] = location_now.Name;
              
-             if (button_change_variables[button.TabIndex].Contains("button_equip_reaction"))
+             if (button_change_variables[button.TabIndex].Contains("Equip"))
              {
                  Players.equip(button_change_variables[button.TabIndex][1],
                      button_change_variables[button.TabIndex][2],
@@ -250,25 +259,27 @@ namespace Project56
                  return;
              }
              
-             if (button_change_variables[button.TabIndex].Contains("button_open_menu"))
+             if (button_change_variables[button.TabIndex].Contains("Unequip"))
              {
-                 
+                 Players.unequip(button_change_variables[button.TabIndex][1],
+                     button_change_variables[button.TabIndex][2],
+                     button_change_variables[button.TabIndex][3]);
                  save_to_players();
                  save_to_data();
                  update();
                  return;
              }
              
-             if (button_change_variables[button.TabIndex].Contains("button_open_inv"))
+             if (button_change_variables[button.TabIndex].Contains("Open Inv"))
              {
-                 states.Add("inventory open");
+                 states.Add("Inventory Open");
                  save_to_players();
                  save_to_data();
                  update();
                  return;
              }
              
-             if (button_change_variables[button.TabIndex].Contains("button_close_inv"))
+             if (button_change_variables[button.TabIndex].Contains("Close Inv"))
              {
                  states.RemoveAt(states.Count-1);
                  save_to_players();
@@ -277,16 +288,16 @@ namespace Project56
                  return;
              }
              
-             if (button_change_variables[button.TabIndex].Contains("open_menu_reaction"))
+             if (button_change_variables[button.TabIndex].Contains("Open Menu"))
              {
-                 states.Add("open menu");
+                 states.Add("Open Menu");
                  save_to_players();
                  save_to_data();
                  update();
                  return;
              }
              
-             if (button_change_variables[button.TabIndex].Contains("close_menu_reaction"))
+             if (button_change_variables[button.TabIndex].Contains("Close Menu"))
              {
                  states.RemoveAt(states.Count-1);
                  save_to_players();
@@ -327,6 +338,36 @@ namespace Project56
                  return;
              }
              
+             if (button_change_variables[button.TabIndex].Contains("Reset"))
+             {
+                 variables = deserializer.Deserialize<Dictionary<string, string>>(File.ReadAllText("data/saves/reset/data.yaml"));
+                 players = deserializer.Deserialize<List<Players.player_class>>(File.ReadAllText("data/saves/reset/players.yaml"));
+                 states = deserializer.Deserialize<List<string>>(File.ReadAllText("data/saves/reset/states.yaml"));
+
+                 save_to_players();
+                 save_to_data();
+                 update();
+                 return;
+             }
+             
+             if (button_change_variables[button.TabIndex].Contains("Open Hero Menu"))
+             {
+                 states.Add("Open Hero Menu");
+                 save_to_players();
+                 save_to_data();
+                 update();
+                 return;
+             }
+             
+             if (button_change_variables[button.TabIndex].Contains("Close Hero Menu"))
+             {
+                 states.RemoveAt(states.Count-1);
+                 save_to_players();
+                 save_to_data();
+                 update();
+                 return;
+             }
+             
              foreach (var variable_change in button_change_variables[button.TabIndex])
              {
                  ReWrite(variable_change);
@@ -340,8 +381,6 @@ namespace Project56
                      ReWrite(variable_change);
                  }
              }
-
-             
              
              save_to_players();
              save_to_data();
@@ -355,7 +394,7 @@ namespace Project56
          {
              int random_count = 0;
              int random_value = 0;
-             if (variables["current location"] == variables["location before"])
+             if (location_now.Name == variables["location before name"])
              {
                  location_image.Image = Image.FromFile("data/images/locations/"+ variables["image path"]+"/"+variables["random image"]+".png");
                  return;
@@ -424,8 +463,13 @@ namespace Project56
          private void check_quests()
          {
              Players.check_inventory();
-
+             Players.open_hero_info();
+             Players.hero_info_buttons();
+             Players.NPC_count();
              Players.open_menu();
+             
+             
+             Quests.repare_time();
          }
          //Размеры поля(клеток)
          public int numbers_width = 30;
@@ -454,7 +498,7 @@ namespace Project56
          public static List<Players.player_class> players = new List<Players.player_class>();
          //public static events.buttons_to_create[] buttons_to_create = new events.buttons_to_create[102];
          //Рандом
-         private static Random rand;
+         public static Random rand;
          //кнопки для создания, buttons_to_create - через Ж с костылями для каждого
          public static List<KeyValuePair<string, List<string>>> buttons_to_create =new List<KeyValuePair<string, List<string>>>();
          //все кнопки

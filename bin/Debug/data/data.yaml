@@ -1,17 +1,20 @@
-current location: Улица Рыбная2
-time: 179
-time hours: 02
-time minutes: 59
+current location: Темный Переулок1
+location before: Темный Переулок1
+location before name: Темный Переулок
 location type: street
-state: open menu
+image type: basic bad street
+image path: basic bad street/День
+day time: День
+random image: 1
+time: 1080
+time hours: 18
+time minutes: 00
+previous time: 1080
+state: Open Menu
 locations open: open
+weather: Облачно
 info: >
-  Ясное, голубое небо. Иногда проплывают редкие облака, и можно долго угадывать, на что они похожи.
-weather: Ясно
-location before: Улица Рыбная2
-image type: basic street
-day time: Ночь
-image path: basic street/Ночь
-player: Перв Втор
-random image: 5
+  Серое и скучное небо, серые и скучные облака до горизонта, но, к счастью, дождя нет, и непонятно, собирается ли он идти в ближайшее время.
+player: Первая Вторая
+NPC count: 0
 
